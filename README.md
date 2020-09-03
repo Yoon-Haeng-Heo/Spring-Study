@@ -68,6 +68,17 @@ mysql> create database DB이름;
 + *mysql 8버전에서는 create user를 먼저 해주고 grant를 해주셔야 합니다.*
 
 ```MySQL
+mysql -u root -p 
+```
+위와 같이 root 계정으로 접속을 합니다. 암호는 설치시 입력한 암호를 사용합니다.
+```MySQL
+CREATE DATABASE connectdb;
+CREATE USER connectuser@localhost IDENTIFIED BY 'connect123!@#';
+GRANT ALL PRIVILEGES ON connectdb.* TO 'connectuser'@'localhost';
+FLUSH PRIVILEGES:
+```
+
+```MySQL
 mysql> create user '이름'@'localhost(서버)' identified by '비밀번호';
 mysql> grant all privileges on db이름.* to 계정이름@'%' identified by ＇암호’;
 mysql> grant all privileges on db이름.* to 계정이름@'localhost' identified by ＇암호’;
