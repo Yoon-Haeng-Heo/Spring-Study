@@ -1,5 +1,5 @@
 # Spring-Study
-Spring 공부
+Spring 공부 use NAVER BOOSTCOURSE
 
 ### 데이터베이스의 기본개념 (정의)
 + 데이터의 집합 (a Set of Data)
@@ -36,3 +36,55 @@ Spring 공부
   * 백업 및 복구에 대한 관리가 복잡
   * 부분적 데이터베이스 손실이 전체 시스템을 정지
   
+### SQL(Structured Query Language)
++ SQL은 데이터를 보다 쉽게 검색하고 추가, 삭제, 수정 같은 조작을 할 수 있도록 고안된 컴퓨터 언어입니다.
++ 관계형 데이터베이스에서 데이터를 조작하고 쿼리하는 표준 수단입니다.
++ DML (Data Manipulation Language): 데이터를 조작하기 위해 사용합니다.
+  INSERT, UPDATE, DELETE, SELECT 등이 여기에 해당합니다.
++ DDL (Data Definition Language): 데이터베이스의 스키마를 정의하거나 조작하기 위해 사용합니다.
+  CREATE, DROP, ALTER 등이 여기에 해당합니다.
++ DCL (Data Control Language) : 데이터를 제어하는 언어입니다.
+  권한을 관리하고, 테이터의 보안, 무결성 등을 정의합니다.
+  GRANT, REVOKE 등이 여기에 해당합니다.
+  
+### Database 생성하기
+MySQL 관리자 계정인 root로 데이터베이스 관리 시스템에 접속하겠다는 것입니다.
+
+```MySQL
+mysql –uroot  -p
+```
+관리자 계정으로 MySQL에 접속했다면, 다음과 같은 명령으로 데이터베이스를 생성합니다.
+```MySQL
+mysql> create database DB이름;
+```
+### Database 사용자 생성과 권한 주기
++ Database를 생성했다면, 해당 데이터베이스를 사용하는 계정을 생성해야 합니다.
++ 또한, 해당 계정이 데이터베이스를 이용할 수 있는 권한을 줘야 합니다.
++ 아래와 같은 명령을 이용해서 사용자 생성과 권한을 줄 수 있습니다.
++ db이름 뒤의 * 는 모든 권한을 의미한다.
++ @’%’는 어떤 클라이언트에서든 접근 가능하다는 의미이고, @’localhost’는 해당 컴퓨터에서만 접근 가능하다는 의미입니다.
++ flush privileges는 DBMS에게 적용을 하라는 의미입니다.
++ 해당 명령을 반드시 실행해줘야 합니다.
++ *mysql 8버전에서는 create user를 먼저 해주고 grant를 해주셔야 합니다.*
+
+```MySQL
+mysql> create user '이름'@'localhost(서버)' identified by '비밀번호';
+mysql> grant all privileges on db이름.* to 계정이름@'%' identified by ＇암호’;
+mysql> grant all privileges on db이름.* to 계정이름@'localhost' identified by ＇암호’;
+mysql> flush privileges;
+```
+### 생성한 Database에 접속하기
+
+```MySQL
+mysql –h호스트명 –uDB계정명 –p 데이터베이스이름
+```
+
+### DBMS에 존재하는 데이터베이스 확인하기
+```MySQL
+mysql> show databases;
+```
+
+### 사용중인 데이터베이스 전환하기
+```MySQL
+mysql> use 데이터베이스이름;
+```
